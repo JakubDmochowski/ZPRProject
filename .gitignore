@@ -12,3 +12,4 @@
 /build/release/*.exe
 /build/release/*.out
 /build/release/*.app
+.sconsign.dblite

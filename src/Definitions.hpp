@@ -2,6 +2,7 @@
 #include <boost/asio.hpp>
 #include <string>
 #include <utility>
+#include "Header.hpp"
 
 namespace Server
 {
@@ -11,11 +12,7 @@ namespace Server
 		{
 			namespace Manager
 			{
-				using Header = struct
-				{
-					std::string name;
-					std::string value;
-				};
+				using Header = header;
 
 				using TCPEndpoint = boost::asio::ip::tcp::endpoint;
 				using TCPResolver = boost::asio::ip::tcp::resolver;
@@ -25,7 +22,6 @@ namespace Server
 				using ErrorCode = boost::system::error_code;
 				using ConstBuffer = boost::asio::const_buffer;
 				using SignalReceiver = boost::asio::signal_set;
-				//using Buffer = boost::asio::buffer;
 
 				class Connection;
 				class ConnectionManager;

@@ -24,6 +24,7 @@ namespace Server
 				using RequestReceiver = boost::asio::ip::tcp::acceptor;
 				using ErrorCode = boost::system::error_code;
 				using ConstBuffer = boost::asio::const_buffer;
+				using SignalReceiver = boost::asio::signal_set;
 				//using Buffer = boost::asio::buffer;
 
 				class Connection;

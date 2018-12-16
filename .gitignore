@@ -1,0 +1,14 @@
+# Compiled Object files
+/obj/*.slo
+/obj/*.lo
+/obj/*.o
+/obj/*.obj
+
+# Executables
+/build/debug/*.exe
+/build/debug/*.out
+/build/debug/*.app
+
+/build/release/*.exe
+/build/release/*.out
+/build/release/*.app

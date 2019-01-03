@@ -22,7 +22,7 @@ namespace Server
 		void accept();
 		void awaitStop();
 	public:
-		Server();
+		Server(const std::string& address, const std::string& port, const std::string& documentRoot);
 		void start();
 		void stop();
 	};

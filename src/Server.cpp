@@ -1,4 +1,5 @@
 #include <string>
+#include <utility>
 #include <signal.h>
 #include "Definitions.hpp"
 #include "ConnectionManager.hpp"
@@ -8,15 +9,25 @@
 
 using namespace Server::Network::Connection::Manager;
 
-Server::Server::Server()
+Server::Server::Server(const std::string& address = "0.0.0.0", 
+					   const std::string& port = "80",
+    				   const std::string& documentRoot = "./")
 	: _ioContext(1),
 	  _requestReceiver(_ioContext),
 	  _signalReceiver(_ioContext),
 	  _connectionManager(),
-	  _port("80"),
-	  _address("128.0.0.1"),
-	  _requestHandler("./")
+	  _port(port),
+	  _address(address),
+	  _requestHandler(documentRoot)
 {
+	_signalReceiver.add(SIGINT);
+	_signalReceiver.add(SIGTERM);
+	#if defined(SIGQUIT)
+		_signalReceiver.add(SIGQUIT);
+	#endif // defined(SIGQUIT)
+
+	awaitStop();
+
 	TCPResolver resolver(_ioContext);
 	TCPEndpoint endpoint =
 		*resolver.resolve(_address, _port).begin();

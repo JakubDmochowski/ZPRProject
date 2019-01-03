@@ -5,8 +5,8 @@
 int main(int argc, char *argv[]) 
 {
 	try
-	{
-		Server::Server server;
+	{   
+		Server::Server server("0.0.0.0", "80", "./");
 		server.start();
 	}
 	catch (std::exception& e)

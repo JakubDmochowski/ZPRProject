@@ -15,3 +15,7 @@
 
 #SCons utilities
 /*.dblite
+/.sconsign.dblite
+
+#Visual Studio Code Utilities
+/*.vscode

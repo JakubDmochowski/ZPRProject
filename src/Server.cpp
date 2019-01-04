@@ -20,6 +20,9 @@ Server::Server::Server(const std::string& address = "0.0.0.0",
 	  _address(address),
 	  _requestHandler(documentRoot)
 {
+	#ifdef _DEBUG_
+		printf("Server Constructor\n");
+	#endif
 	_signalReceiver.add(SIGINT);
 	_signalReceiver.add(SIGTERM);
 	#if defined(SIGQUIT)
@@ -35,21 +38,32 @@ Server::Server::Server(const std::string& address = "0.0.0.0",
 	_requestReceiver.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
 	_requestReceiver.bind(endpoint);
 	_requestReceiver.listen();
+
+	accept();
 }
 
 void Server::Server::start()
 {
+	#ifdef _DEBUG_
+		printf("Server start()\n");
+	#endif
 	_ioContext.run();
 }
 
 void Server::Server::stop()
 {
+	#ifdef _DEBUG_
+		printf("Server stop()\n");
+	#endif
 	_requestReceiver.close();
 	_connectionManager.stopAll();
 }
 
 void Server::Server::accept()
 {
+	#ifdef _DEBUG_
+		printf("Server Accept()\n");
+	#endif
 	_requestReceiver.async_accept(
 		[this](ErrorCode ec, TCPSocket socket)
 	{
@@ -69,6 +83,9 @@ void Server::Server::accept()
 
 void Server::Server::awaitStop()
 {
+	#ifdef _DEBUG_
+		printf("Server awaitStop()\n");
+	#endif
 	_signalReceiver.async_wait(
 		[this](ErrorCode ec, int signo)
 	{

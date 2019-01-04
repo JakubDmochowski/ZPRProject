@@ -7,21 +7,32 @@ using namespace Server::Network::Connection::Manager;
 TCPConnection::TCPConnection(TCPSocket socket, ConnectionManager & connectionManager, RequestHandler & requestHandler)
 	: _socket(std::move(socket)), _connectionManager(connectionManager), _requestHandler(requestHandler)
 {
-
+	#ifdef _DEBUG_
+		printf("TCPConnection Constructor\n");
+	#endif
 }
 
 void TCPConnection::start()
 {
+	#ifdef _DEBUG_
+		printf("TCPConnection Start()\n");
+	#endif
 	read();
 }
 
 void TCPConnection::stop()
 {
+	#ifdef _DEBUG_
+		printf("TCPConnection Stop()\n");
+	#endif
 	_socket.close();
 }
 
 void TCPConnection::read()
 {
+	#ifdef _DEBUG_
+		printf("TCPConnection Read()\n");
+	#endif
 	auto self(shared_from_this());
 	_socket.async_read_some(boost::asio::buffer(_buffer),
 		[this, self](boost::system::error_code ec, std::size_t bytes_transferred)
@@ -56,6 +67,9 @@ void TCPConnection::read()
 
 void TCPConnection::write()
 {
+	#ifdef _DEBUG_
+		printf("TCPConnection Write()\n");
+	#endif
 	auto self(shared_from_this());
 	boost::asio::async_write(_socket, _reply.to_buffers(),
 		[this, self](boost::system::error_code ec, std::size_t)

@@ -16,6 +16,7 @@ namespace Server
 				{
 					std::vector<std::shared_ptr<TCPConnection>> _TCPConnections;
 				public:
+					ConnectionManager();
 					//ConnectionManager(const ConnectionManager&) = delete;
 					//ConnectionManager& operator=(const ConnectionManager&) = delete;
 					void start(std::shared_ptr<TCPConnection> connection);

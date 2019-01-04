@@ -4,17 +4,19 @@
 #include "ConnectionManager.hpp"
 #include "RequestHandler.hpp"
 
+using namespace Server::Network::Connection::Manager;
+
 namespace Server
 {
 	class Server
 	{
-		Network::Connection::Manager::ConnectionManager _connectionManager;
-		Network::Connection::Manager::RequestHandler _requestHandler;
+		ConnectionManager _connectionManager;
+		RequestHandler _requestHandler;
 
-		Network::Connection::Manager::IOContext _ioContext;
-		Network::Connection::Manager::RequestReceiver _requestReceiver;
+		IOContext _ioContext;
+		RequestReceiver _requestReceiver;
 
-		Network::Connection::Manager::SignalReceiver _signalReceiver;
+		SignalReceiver _signalReceiver;
 
 		const std::string _port;
 		const std::string _address;

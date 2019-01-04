@@ -11,10 +11,16 @@ using namespace Server::Network::Connection::Manager;
 RequestHandler::RequestHandler(const std::string& documentRoot)
 	: _documentRoot(documentRoot)
 {
+	#ifdef _DEBUG_
+		printf("RequestHandler Constructor\n");
+	#endif
 }
 
 void RequestHandler::handleRequest(const Request& req, Reply& rep)
 {
+	#ifdef _DEBUG_
+		printf("RequestHandler handleRequest()\n");
+	#endif
 	// Decode url to path.
 	std::string request_path;
 	if (!urlDecode(req._uri, request_path))
@@ -69,6 +75,9 @@ void RequestHandler::handleRequest(const Request& req, Reply& rep)
 
 bool RequestHandler::urlDecode(const std::string& in, std::string& out)
 {
+	#ifdef _DEBUG_
+		printf("RequestHandler urlDecode()\n");
+	#endif
 	out.clear();
 	out.reserve(in.size());
 	for (std::size_t i = 0; i < in.size(); ++i)

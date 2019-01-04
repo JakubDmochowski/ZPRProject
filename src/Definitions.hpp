@@ -26,9 +26,7 @@ namespace Server
 				class Connection;
 				class ConnectionManager;
 				class Decoder;
-				class Encoder;
 				class RequestHandler;
-				class RequestSender;
 				class TCPConnection;
 				struct Reply;
 				struct Request;
